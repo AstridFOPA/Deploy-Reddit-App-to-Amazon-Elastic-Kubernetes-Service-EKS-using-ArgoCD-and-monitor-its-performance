@@ -1,4 +1,4 @@
-resource "kubernetes_config_map_v1" "aws_auth" {
+/*resource "kubernetes_config_map_v1" "aws_auth" {
   metadata {
     name      = "aws-auth"
     namespace = "kube-system"
@@ -18,3 +18,4 @@ resource "kubernetes_config_map_v1" "aws_auth" {
 data "aws_iam_role" "jenkins_role" {
   name = "Jenkins-iam-role"
 }
+*/
