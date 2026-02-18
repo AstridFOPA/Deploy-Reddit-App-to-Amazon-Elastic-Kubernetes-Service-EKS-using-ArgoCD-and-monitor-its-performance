@@ -3,11 +3,11 @@ provider "aws" {
 }
 
 data "aws_eks_cluster" "this" {
-  name = var.cluster-name.this.name
+  name = var.cluster-name
 }
 
 data "aws_eks_cluster_auth" "this" {
-  name = var.cluster-name.this.name
+  name = var.cluster-name
 }
 
 provider "kubernetes" {
