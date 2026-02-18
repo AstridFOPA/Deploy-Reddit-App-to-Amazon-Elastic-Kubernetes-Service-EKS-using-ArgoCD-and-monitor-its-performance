@@ -52,7 +52,7 @@ pipeline{
         stage("Docker Build & Push"){
             steps{
                 script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'astridloic'){
+                   withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/'){
                        sh "docker build -t reddit ."
                        sh "docker tag reddit astridloic/reddit:${BUILD_NUMBER} "
                        sh "docker push astridloic/reddit:${BUILD_NUMBER} "
