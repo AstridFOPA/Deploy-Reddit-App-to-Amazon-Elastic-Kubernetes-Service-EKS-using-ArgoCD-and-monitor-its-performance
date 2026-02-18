@@ -40,9 +40,8 @@ pipeline{
         }
         stage('OWASP FS SCAN') {
             steps {
-                withCredentials([string(credentialsId: 'nvd-api-key', variable: 'NVD_API_KEY')])
-                    dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
         stage('TRIVY FS SCAN') {
@@ -73,7 +72,7 @@ pipeline{
             }
             steps {
                 dir('K8s'){
-                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                             git config user.email "moisefopa@gmail.com"
                             git config user.name "AstridFOPA"
