@@ -8,6 +8,28 @@ pipeline{
         SCANNER_HOME=tool 'sonar-scanner'
     }
     stages {
+        stage('Tooling Check') {
+            steps {
+                sh '''
+                echo "=== WHOAMI ==="
+                whoami
+                id
+                echo "=== BINARIES ==="
+                which git || true
+                git --version || true
+                which node || true
+                node -v || true
+                which npm || true
+                npm -v || true
+                which docker || true
+                docker --version || true
+                which trivy || true
+                trivy --version || true
+                echo "=== DOCKER PERMS ==="
+                docker ps || true
+                '''
+            }
+        }
         stage('clean workspace'){
             steps{
                 cleanWs()
