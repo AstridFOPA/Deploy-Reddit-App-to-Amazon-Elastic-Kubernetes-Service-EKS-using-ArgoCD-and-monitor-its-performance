@@ -74,7 +74,7 @@ pipeline{
             }
             steps {
                 dir('K8s'){
-                    withCredentials([string(credentialsId: 'github-cred', variable: 'GITHUB_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                             git config user.email "moisefopa@gmail.com"
                             git config user.name "AstridFOPA"
